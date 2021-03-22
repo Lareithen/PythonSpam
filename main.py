@@ -2,7 +2,6 @@ import os
 import sys
 import pyautogui, time
 from PyQt5 import QtWidgets, QtGui
-from PyQt5.QtGui import QKeySequence
 
 class Pencere(QtWidgets.QWidget):
     def __init__(self):
