@@ -11,4 +11,3 @@ Merhabalar, ben Emirhan! Python'da **PyQt5** kütüphanesi ile kodladığım, sp
 1. [Buraya](https://www.python.org/downloads/windows/) tıklayarak **Python 3.5.4** sürümünü kurmaslınız.
 2. [buraya](https://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.6/) tıklayarak **PyQt5 5.6** kurmalısınız.
 3. Son olarak `main.py` dosyasını **Python** ile açabilirsiniz.
-
