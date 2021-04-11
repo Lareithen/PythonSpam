@@ -9,5 +9,5 @@ Merhabalar, ben Emirhan! Python'da **PyQt5** kütüphanesi ile kodladığım, sp
 
 ## Kurulum
 1. [Buraya](https://www.python.org/downloads/windows/) tıklayarak size uygun olan **Python** sürümünü kurmaslınız.
-2. **PyQt5** kütüphanesini terminalden `pip install pyqt5-tools` şeklinde indirmelisiniz.
+2. Gerekli kütüphaneleri terminalden `pip install <moduladi>` şeklinde indirmelisiniz. Örneğin `pip install pyautogui` gibi.
 3. Son olarak `main.py` dosyasını **Python** ile açabilirsiniz.
