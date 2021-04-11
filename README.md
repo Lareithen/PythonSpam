@@ -2,7 +2,7 @@
 PyQt5 kütüphanesi ile kodlanmış kullanıcı arayüzlü spam uygulaması.
 
 ## Ön İzleme
-![Ön İzleme](https://user-images.githubusercontent.com/72984140/112053530-81c41080-8b65-11eb-9127-8665a83cb70f.png)
+![Ön İzleme](https://user-images.githubusercontent.com/72984140/114316771-a6305e80-9b0d-11eb-8473-5431e5282fc6.png)
 
 ## Açıklama
 Merhabalar, ben Emirhan! Python'da **PyQt5** kütüphanesi ile kodladığım, spam uygulamasını sizinle paylaşıyorum. İşinizi görür umarım.
