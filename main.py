@@ -1,6 +1,8 @@
 import os
 import sys
-import pyautogui, time
+import pyautogui
+import time
+import pyperclip
 from PyQt5 import QtWidgets, QtGui
 
 class Pencere(QtWidgets.QWidget):
@@ -8,16 +10,22 @@ class Pencere(QtWidgets.QWidget):
         super().__init__()
         self.init_ui()
     def init_ui(self):
+        self.menubar = QtWidgets.QMenuBar()
+        self.menu = self.menubar.addMenu("Menü")
+
         self.yazi = QtWidgets.QLabel("Spamlanacak mesajı gir")
         self.sec = QtWidgets.QPushButton("veya dosyalardan seç")
         self.mesaj = QtWidgets.QTextEdit()
-        self.yazi2 = QtWidgets.QLabel("Süre:") 
-        self.sure = QtWidgets.QSpinBox()
-        self.yazi3 = QtWidgets.QLabel("Zaman Aşımı:") 
+        self.yazi2 = QtWidgets.QLabel("Tekrar:") 
+        self.tekrar = QtWidgets.QSpinBox()
+        self.tekrar.setMaximum(2147483647)
+        self.yazi3 = QtWidgets.QLabel("Aralık:") 
+        self.aralik = QtWidgets.QSpinBox()
+        self.yazi4 = QtWidgets.QLabel("Zaman Aşımı:") 
         self.zaman_asimi = QtWidgets.QSpinBox()
         self.buton = QtWidgets.QPushButton("Başlat")
-        self.yazi4 = QtWidgets.QLabel("Varsayılan ayarlar için süre ile zaman aşımını 0 olarak bırakınız!")
-        self.yazi4.setStyleSheet("color:#0073ff")
+        self.yazi5 = QtWidgets.QLabel("Varsayılan ayarlar için süre ile zaman aşımını 0 olarak bırakınız!")
+        self.yazi5.setStyleSheet("color:#0073ff")
 
         vb = QtWidgets.QVBoxLayout()
 
@@ -32,14 +40,16 @@ class Pencere(QtWidgets.QWidget):
 
         hb = QtWidgets.QHBoxLayout()
         hb.addWidget(self.yazi2)
-        hb.addWidget(self.sure)
+        hb.addWidget(self.tekrar)
         hb.addWidget(self.yazi3)
+        hb.addWidget(self.aralik)
+        hb.addWidget(self.yazi4)
         hb.addWidget(self.zaman_asimi)
         vb.addLayout(hb)
 
         vb2 = QtWidgets.QVBoxLayout()
         vb2.addWidget(self.buton)
-        vb2.addWidget(self.yazi4)
+        vb2.addWidget(self.yazi5)
         vb.addLayout(vb2)
 
         self.setLayout(vb)
@@ -50,28 +60,36 @@ class Pencere(QtWidgets.QWidget):
 
     def baslat(self):
         time.sleep(self.zaman_asimi.value())
-        dosya = self.mesaj.toPlainText()
-        if dosya == "":
-            self.yazi4.setText("Mesaj girilimedi!")
-            self.yazi4.setStyleSheet("color:red")
+        yazi = self.mesaj.toPlainText()
+        self.sayi = 0
+        if yazi == "":
+            QtWidgets.QMessageBox.critical(self, "Hata", "Spam işlemi başarısız, spamlanacak bir yazı yok!")
         else:
-            self.yazi4.deleteLater()
-            for i in dosya:
-                i = dosya
-                while i == dosya:
-                    time.sleep(self.sure.value())
-                    pyautogui.typewrite(i)
+            if self.tekrar.value() == 0:
+                time.sleep(self.zaman_asimi.value())
+                while True:
+                    time.sleep(self.aralik.value())
+                    pyperclip.copy(yazi)
+                    pyautogui.hotkey("ctrl", "v")
                     pyautogui.press("enter")
+            else:
+                time.sleep(self.zaman_asimi.value())
+                while self.sayi < self.tekrar.value():
+                    time.sleep(self.aralik.value())
+                    pyperclip.copy(yazi)
+                    pyautogui.hotkey("ctrl", "v")
+                    pyautogui.press("enter")
+                    self.sayi+=1
 
     def secme(self):
-        secme_seysi = QtWidgets.QFileDialog.getOpenFileName(self, "Dosya Seç", os.getenv("Desktop"))
+        secme_seysi = QtWidgets.QFileDialog.getOpenFileName(self, "Dosya Seç", os.getenv("Desktop"), filter="(*.txt)")
         with open(secme_seysi[0], "r", encoding="utf-8") as file:
             self.mesaj.setText(file.read())
 
 obje = QtWidgets.QApplication(sys.argv)
 pencere = Pencere()
-pencere.setWindowTitle("by Larei")
-pencere.setFixedSize(315,230)
+pencere.setWindowTitle("by Larei v2.0")
+pencere.setFixedSize(320,300)
 sys.exit(obje.exec())
 
 # larei was here
