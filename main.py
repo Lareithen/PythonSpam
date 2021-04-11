@@ -10,9 +10,6 @@ class Pencere(QtWidgets.QWidget):
         super().__init__()
         self.init_ui()
     def init_ui(self):
-        self.menubar = QtWidgets.QMenuBar()
-        self.menu = self.menubar.addMenu("Menü")
-
         self.yazi = QtWidgets.QLabel("Spamlanacak mesajı gir")
         self.sec = QtWidgets.QPushButton("veya dosyalardan seç")
         self.mesaj = QtWidgets.QTextEdit()
