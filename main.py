@@ -85,7 +85,7 @@ class Pencere(QtWidgets.QWidget):
 
 obje = QtWidgets.QApplication(sys.argv)
 pencere = Pencere()
-pencere.setWindowTitle("by Larei v2.0")
+pencere.setWindowTitle("Spammer v2.0 by Larei")
 pencere.setFixedSize(320,300)
 sys.exit(obje.exec())
 
